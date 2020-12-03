@@ -36,6 +36,16 @@ public class MyArrayList<T> implements List<T> {
 		mal.add(1);
 		mal.add(2);
 		mal.add(3);
+		mal.add(4);
+		mal.add(5);
+		mal.add(6);
+		mal.add(7);
+		mal.add(8);
+		mal.add(9);
+		mal.add(10);
+		mal.add(11);
+		mal.add(12);
+		mal.add(13);
 		System.out.println(Arrays.toString(mal.toArray()) + " size = " + mal.size);
 
 		mal.remove(new Integer(2));
@@ -45,7 +55,19 @@ public class MyArrayList<T> implements List<T> {
 	@Override
 	public boolean add(T element) {
 		// TODO: FILL THIS IN!
-		return false;
+		// 12.3 date version
+		if (size + 1 > array.length) {
+			int newSize = size * 2;
+			T[] newArray =(T[]) new Object[newSize];
+			System.arraycopy(array, 0, newArray, 0, array.length);
+			newArray[array.length] = element;
+			array = newArray;
+			size++;
+		} else {
+			array[size] = element;
+			size++;
+		}
+		return true;
 	}
 
 	@Override
@@ -119,7 +141,7 @@ public class MyArrayList<T> implements List<T> {
 	 * Handles the special case that the target is null.
 	 *
 	 * @param target
-	 * @param object
+	 * @param element
 	 */
 	private boolean equals(Object target, Object element) {
 		if (target == null) {
